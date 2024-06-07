@@ -46,14 +46,14 @@ namespace VehicleRental.Data.Map
                 .IsRequired();
 
             builder
-                .Property(b => b.Deliveryman_Id)
+                .Property(b => b.Renter_Id)
                 .HasColumnType("integer")
-                .HasColumnName("deliveryman_id");
+                .HasColumnName("Renter_id");
 
-            builder.HasOne(b => b.Deliveryman)
+            builder.HasOne(b => b.Renter)
               .WithMany()
               .HasPrincipalKey(b => b.Id)
-              .HasForeignKey(b => b.Deliveryman_Id);
+              .HasForeignKey(b => b.Renter_Id);
 
             builder
                 .HasOne(b => b.Brands)

@@ -91,7 +91,7 @@ namespace VehicleRental.Application.Services.AdminVehicle
             {
                 var vehicle = await _getVehicleByIdQuery.GetByIdAsync(request.VehicleId);
 
-                if (vehicle.Deliveryman_Id.HasValue)
+                if (vehicle.Renter_Id.HasValue)
                 {
 
                     var brand = await _getBrandByIdQuery.GetByIdAsync(vehicle.Brand_Id);

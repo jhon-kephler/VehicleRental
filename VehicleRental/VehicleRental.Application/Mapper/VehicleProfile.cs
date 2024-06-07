@@ -28,7 +28,7 @@ namespace VehicleRental.Application.Mapper
                 .ForMember(dest => dest.Vehicle_Id, src => src.MapFrom(x => x.Id))
                 .ForMember(dest => dest.Year_Vehicle, src => src.MapFrom(x => x.Year_Vehicle))
                 .ForMember(dest => dest.Brand_Id, src => src.MapFrom(x => x.Brand_Id))
-                .ForMember(dest => dest.Deliveryman_Id, src => src.MapFrom(x => x.Deliveryman_Id))
+                .ForMember(dest => dest.Renter_Id, src => src.MapFrom(x => x.Renter_Id))
                 .ForMember(dest => dest.Plate, src => src.MapFrom(x => x.Plate))
                 .ForMember(dest => dest.Model, src => src.MapFrom(x => x.Model));
         }

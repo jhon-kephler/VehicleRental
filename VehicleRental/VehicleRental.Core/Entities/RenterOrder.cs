@@ -3,7 +3,7 @@
 namespace VehicleRental.Core.Entities
 {
     [Table("deliveryorder")]
-    public class DeliveryOrder
+    public class RenterOrder
     {
         [Column("id")]
         public int Id { get; private set; }
@@ -21,7 +21,7 @@ namespace VehicleRental.Core.Entities
         public bool Availability { get; private set; }
 
         [Column("deliveryman_id")]
-        public int? Deliveryman_Id { get; private set; }
-        public Deliveryman Deliveryman { get; private set; }
+        public int? Renter_Id { get; private set; }
+        public Renter Renter { get; private set; }
     }
 }

@@ -9,13 +9,14 @@ using VehicleRental.Core.Schema.VehicleSchema.Response;
 namespace VehicleRental.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class AdminVehicleController : ControllerBase
+    [Route("api/vehicle/[controller]")]
+    [ApiExplorerSettings(GroupName = "vehicle")]
+    public class VehicleController : ControllerBase
     {
-        private readonly ILogger<AdminVehicleController> _logger;
+        private readonly ILogger<VehicleController> _logger;
         private readonly IMediator _mediator;
 
-        public AdminVehicleController(ILogger<AdminVehicleController> logger, IMediator mediator)
+        public VehicleController(ILogger<VehicleController> logger, IMediator mediator)
         {
             _logger = logger;
             _mediator = mediator;
@@ -25,20 +26,20 @@ namespace VehicleRental.API.Controllers
         public Task<Result<SearchVehicleResponse>> Get(SearchVehicleByIdRequest request) =>
             _mediator.Send(request);
 
+        [HttpPost()]
+        public Task<Result> PostNewVehicle(VehicleRequest request) =>
+            _mediator.Send(request);
+
+        [HttpDelete()]
+        public Task<Result> DeleteVehicle(DeleteVehicleRequest request) =>
+            _mediator.Send(request);
+
         [HttpGet("plate")]
         public Task<Result<SearchVehicleResponse>> Get(SearchVehicleByPlateRequest request) =>
             _mediator.Send(request);
 
-        [HttpPost("vehicle")]
-        public Task<Result> PostNewVehicle(VehicleRequest request) =>
-            _mediator.Send(request);
-
         [HttpPost("plate")]
         public Task<Result> PostPlate(PlateRequest request) =>
-            _mediator.Send(request);
-
-        [HttpDelete("vehicle")]
-        public Task<Result> DeleteVehicle(DeleteVehicleRequest request) =>
             _mediator.Send(request);
     }
 }

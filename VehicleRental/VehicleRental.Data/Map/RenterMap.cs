@@ -4,9 +4,9 @@ using VehicleRental.Core.Entities;
 
 namespace VehicleRental.Data.Map
 {
-    public class DeliverymanMap
+    public class RenterMap
     {
-        public DeliverymanMap(EntityTypeBuilder<Deliveryman> builder)
+        public RenterMap(EntityTypeBuilder<Renter> builder)
         {
             builder
                 .HasKey(x => x.Id);
@@ -60,13 +60,13 @@ namespace VehicleRental.Data.Map
 
             builder
                 .HasOne(b => b.Vehicle)
-                .WithOne(a => a.Deliveryman)
-                .HasForeignKey<Vehicle>(b => b.Deliveryman_Id);
+                .WithOne(a => a.Renter)
+                .HasForeignKey<Vehicle>(b => b.Renter_Id);
 
             builder
-                .HasOne(b => b.DeliveryOrder)
-                .WithOne(a => a.Deliveryman)
-                .HasForeignKey<DeliveryOrder>(b => b.Deliveryman_Id);
+                .HasOne(b => b.RenterOrder)
+                .WithOne(a => a.Renter)
+                .HasForeignKey<RenterOrder>(b => b.Renter_Id);
         }
     }
 }

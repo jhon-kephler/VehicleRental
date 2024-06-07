@@ -15,19 +15,19 @@ namespace VehicleRental.Data
             var asembly = typeof(VehicleRentalContext).Assembly;
             modelBuilder.ApplyConfigurationsFromAssembly(asembly);
 
-            modelBuilder.Entity<Deliveryman>()
-                        .HasOne(d => d.DeliveryOrder)
-                        .WithOne(o => o.Deliveryman)
-                        .HasForeignKey<DeliveryOrder>(o => o.Deliveryman_Id);
+            modelBuilder.Entity<Renter>()
+                        .HasOne(d => d.RenterOrder)
+                        .WithOne(o => o.Renter)
+                        .HasForeignKey<RenterOrder>(o => o.Renter_Id);
 
-            modelBuilder.Entity<Deliveryman>()
+            modelBuilder.Entity<Renter>()
                         .HasOne(d => d.Vehicle)
-                        .WithOne(o => o.Deliveryman)
-                        .HasForeignKey<Vehicle>(o => o.Deliveryman_Id);
+                        .WithOne(o => o.Renter)
+                        .HasForeignKey<Vehicle>(o => o.Renter_Id);
         }
 
-        public DbSet<Deliveryman> Deliveryman { get; set; }
-        public DbSet<DeliveryOrder> DeliveryOrder { get; set; }
+        public DbSet<Renter> Renterman { get; set; }
+        public DbSet<RenterOrder> RenterOrder { get; set; }
         public DbSet<Vehicle> Vehicle { get; set; }
     }
 }

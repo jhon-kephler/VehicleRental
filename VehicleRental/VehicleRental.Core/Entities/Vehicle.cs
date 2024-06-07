@@ -23,9 +23,9 @@ namespace VehicleRental.Core.Entities
         public string Plate { get; set; }
 
         [Column("deliveryman_id")]
-        public int? Deliveryman_Id { get; set; }
+        public int? Renter_Id { get; set; }
 
-        public Deliveryman Deliveryman { get; set; }
+        public Renter Renter { get; set; }
 
         public Brands Brands { get; set; }
 

@@ -2,7 +2,7 @@
 
 namespace VehicleRental.Core.Entities
 {
-    public class Deliveryman
+    public class Renter
     {
         [Column("id")]
         public int Id { get; private set; }
@@ -24,7 +24,7 @@ namespace VehicleRental.Core.Entities
 
         [Column("cnh_img")]
         public string CNH_Img { get; private set; }
-        public DeliveryOrder DeliveryOrder { get; private set; }
+        public RenterOrder RenterOrder { get; private set; }
         public Vehicle Vehicle { get; private set; }
     }
 }

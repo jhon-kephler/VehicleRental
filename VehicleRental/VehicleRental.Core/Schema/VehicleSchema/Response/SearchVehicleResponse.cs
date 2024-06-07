@@ -19,7 +19,7 @@ namespace VehicleRental.Core.Schema.VehicleSchema.Response
 
         public string Plate { get; set; }
 
-        public int? Deliveryman_Id { get; set; }
+        public int? Renter_Id { get; set; }
 
     }
 }

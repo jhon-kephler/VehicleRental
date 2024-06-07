@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 using VehicleRental.Data;
 using VehicleRental.Infrastructure;
 
@@ -16,8 +18,29 @@ namespace VehicleRental.API
         {
             services.AddControllers();
 
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            services.AddEndpointsApiExplorer(); 
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("vehicle", new OpenApiInfo
+                {
+                    Title = "Vehicle API",
+                    Version = "v1"
+                });
+
+                c.SwaggerDoc("order", new OpenApiInfo
+                {
+                    Title = "Order API",
+                    Version = "v1"
+                });
+
+                c.SwaggerDoc("renter", new OpenApiInfo
+                {
+                    Title = "Renter API",
+                    Version = "v1"
+                });
+            });
+
             services.AddApplication();
         }
 
@@ -25,8 +48,13 @@ namespace VehicleRental.API
         {
             if (app.Environment.IsDevelopment())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwagger(); 
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/vehicle/swagger.json", "Vehicle API");
+                    c.SwaggerEndpoint("/swagger/order/swagger.json", "Order API");
+                    c.SwaggerEndpoint("/swagger/renter/swagger.json", "Renter API");
+                });
             }
 
             app.UseAuthorization();

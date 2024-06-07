@@ -2,7 +2,7 @@ CREATE DATABASE vehiclerental;
 
 \c vehiclerental;
 
-CREATE TABLE deliveryman (
+CREATE TABLE renter (
     Id SERIAL PRIMARY KEY NOT NULL,
     Name varchar(100) NOT NULL,
     CNPJ varchar(14) NOT NULL,
@@ -12,13 +12,13 @@ CREATE TABLE deliveryman (
     CNH_Img varchar(250) NOT NULL
 );
 
-CREATE TABLE deliveryOrder (
+CREATE TABLE renterorder (
     Id SERIAL PRIMARY KEY NOT NULL,
     Created_Date TIMESTAMP NOT NULL,
     Race_Value numeric NOT NULL,
     Status varchar(50) NOT NULL,
     Availability boolean NOT NULL,
-    Deliveryman_Id integer REFERENCES Deliveryman(Id)
+    Renter_Id integer REFERENCES renter(Id)
 );
 
 CREATE TABLE brands (
@@ -33,7 +33,7 @@ CREATE TABLE vehicle (
     Brand_Id integer NOT NULL REFERENCES brands(Id),
     Model varchar(50) NOT NULL,
     Plate varchar(10) NOT NULL,
-    Deliveryman_Id integer REFERENCES Deliveryman(Id)
+    Renter_Id integer REFERENCES renter(Id)
 );
 
 INSERT INTO brands (brand_name, type_vehicle) VALUES
