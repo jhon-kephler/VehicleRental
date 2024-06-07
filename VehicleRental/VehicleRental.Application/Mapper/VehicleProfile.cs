@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using VehicleRental.Core.Entities;
-using VehicleRental.Core.Schema.VehicleSchema.Request;
-using VehicleRental.Core.Schema.PlateSchema.Request;
-using VehicleRental.Core.Schema.DeleteVehicleSchema.Request;
 using static VehicleRental.Data.Command.VehicleCommand.DeleteVehicleCommand;
-using VehicleRental.Core.Schema.VehicleSchema.Response;
+using VehicleRental.Core.Schema.VehicleSchemas.PlateSchema.Request;
+using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Request;
+using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Response;
+using VehicleRental.Core.Schema.VehicleSchemas.DeleteVehicleSchema.Request;
 
 namespace VehicleRental.Application.Mapper
 {

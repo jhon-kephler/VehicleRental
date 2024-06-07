@@ -21,8 +21,15 @@ namespace VehicleRental.Data.Repositories
 
         public void Add (T entity)
         {
-            _dbSet.Attach(entity);
-            _dbContext.SaveChanges();
+            try
+            {
+                _dbSet.Attach(entity);
+                _dbContext.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine(ex.InnerException.Message);
+            }
         }
 
         public void Update(int id, T entity)

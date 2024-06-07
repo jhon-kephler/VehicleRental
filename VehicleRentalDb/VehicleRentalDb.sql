@@ -5,8 +5,8 @@ CREATE DATABASE vehiclerental;
 CREATE TABLE renter (
     Id SERIAL PRIMARY KEY NOT NULL,
     Name varchar(100) NOT NULL,
-    CNPJ varchar(14) NOT NULL,
-    Birth_Date TIMESTAMP NOT NULL,
+    Document varchar(14) NOT NULL,
+    Birth_Date TimestampTz NOT NULL,
     CNH varchar(11) NOT NULL,
     CNH_Type varchar(10) NOT NULL,
     CNH_Img varchar(250) NOT NULL
@@ -14,7 +14,7 @@ CREATE TABLE renter (
 
 CREATE TABLE renterorder (
     Id SERIAL PRIMARY KEY NOT NULL,
-    Created_Date TIMESTAMP NOT NULL,
+    Created_Date TimestampTz NOT NULL,
     Race_Value numeric NOT NULL,
     Status varchar(50) NOT NULL,
     Availability boolean NOT NULL,

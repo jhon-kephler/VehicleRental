@@ -2,29 +2,30 @@
 
 namespace VehicleRental.Core.Entities
 {
+    [Table("renter")]
     public class Renter
     {
         [Column("id")]
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [Column("name")]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
-        [Column("cnpj")]
-        public string CNPJ { get; private set; }
+        [Column("document")]
+        public string Document { get; set; }
 
         [Column("birth_date")]
-        public DateTime Birth_Date { get; private set; }
+        public DateTime Birth_Date { get; set; }
 
         [Column("cnh")]
-        public string CNH { get; private set; }
+        public string CNH { get; set; }
 
         [Column("cnh_type")]
-        public string CNH_Type { get; private set; }
+        public string CNH_Type { get; set; }
 
         [Column("cnh_img")]
-        public string CNH_Img { get; private set; }
-        public RenterOrder RenterOrder { get; private set; }
-        public Vehicle Vehicle { get; private set; }
+        public string CNH_Img { get; set; }
+        public RenterOrder RenterOrder { get; set; }
+        public Vehicle Vehicle { get; set; }
     }
 }

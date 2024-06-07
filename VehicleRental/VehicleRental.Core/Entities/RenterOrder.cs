@@ -2,26 +2,26 @@
 
 namespace VehicleRental.Core.Entities
 {
-    [Table("deliveryorder")]
+    [Table("renterorder")]
     public class RenterOrder
     {
         [Column("id")]
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [Column("created_date")]
-        public DateTime Created_Date { get; private set; }
+        public DateTime Created_Date { get; set; }
 
         [Column("race_value")]
-        public decimal Race_Value { get; private set; }
+        public decimal Race_Value { get; set; }
 
         [Column("status")]
-        public string Status { get; private set; }
+        public string Status { get; set; }
 
         [Column("availability")]
-        public bool Availability { get; private set; }
+        public bool Availability { get; set; }
 
-        [Column("deliveryman_id")]
-        public int? Renter_Id { get; private set; }
-        public Renter Renter { get; private set; }
+        [Column("renter_id")]
+        public int? Renter_Id { get; set; }
+        public Renter Renter { get; set; }
     }
 }

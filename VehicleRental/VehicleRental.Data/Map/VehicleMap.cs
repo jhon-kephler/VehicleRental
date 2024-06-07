@@ -50,15 +50,17 @@ namespace VehicleRental.Data.Map
                 .HasColumnType("integer")
                 .HasColumnName("Renter_id");
 
-            builder.HasOne(b => b.Renter)
-              .WithMany()
-              .HasPrincipalKey(b => b.Id)
-              .HasForeignKey(b => b.Renter_Id);
+            builder
+                 .HasOne(b => b.Renter)
+                 .WithMany()
+                 .HasPrincipalKey(b => b.Id)
+                 .HasForeignKey(b => b.Renter_Id);
 
             builder
                 .HasOne(b => b.Brands)
-                .WithOne(a => a.Vehicle)
-                .HasForeignKey<Brands>(b => b.Id);
+                .WithOne(v => v.Vehicle)
+                .HasForeignKey<Vehicle>(b => b.Brand_Id)
+                .HasPrincipalKey<Brands>(v => v.Id);
         }
     }
 }

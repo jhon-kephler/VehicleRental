@@ -6,7 +6,7 @@ namespace VehicleRental.Core.Schema
     {
         public bool IsSuccess { get; set; }
 
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int StatusCode => IsSuccess ? 200 : 500;
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -25,7 +25,7 @@ namespace VehicleRental.Core.Schema
         {
             IsSuccess = true;
             Data = data;
-        }
+        }   
     }
 
     public class Result : Result<object>

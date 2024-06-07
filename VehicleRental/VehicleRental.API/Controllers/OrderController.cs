@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using VehicleRental.Core.Schema.VehicleSchema.Request;
-using VehicleRental.Core.Schema.VehicleSchema.Response;
 using VehicleRental.Core.Schema;
+using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Request;
+using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Response;
 
 namespace VehicleRental.API.Controllers
 {

@@ -5,12 +5,16 @@ using VehicleRental.Data.Command.VehicleCommand;
 using VehicleRental.Data.Command.VehicleCommand.Interfaces;
 using VehicleRental.Data.Repositories;
 using VehicleRental.Domain.Repositories;
-using VehicleRental.Application.Services.AdminVehicle;
-using VehicleRental.Application.Services.AdminVehicle.Interfaces;
+using VehicleRental.Application.Services.VehicleServices;
+using VehicleRental.Application.Services.VehicleServices.Interfaces;
 using VehicleRental.Data.Query.VehicleQuery.Interfaces;
 using VehicleRental.Data.Query.VehicleQuery;
 using VehicleRental.Data.Query.BrandQuery.Interfaces;
 using VehicleRental.Data.Query.brandQuery;
+using VehicleRental.Data.Command.RenterCommand.Interfaces;
+using VehicleRental.Data.Command.RenterCommand;
+using VehicleRental.Application.Services.RenterServices.Interfaces;
+using VehicleRental.Application.Services.RenterServices;
 
 namespace VehicleRental.Infrastructure
 {
@@ -40,6 +44,8 @@ namespace VehicleRental.Infrastructure
         {
             services.AddScoped<IManageVehicleService, ManageVehicleService>();
             services.AddScoped<ISearchVehicleService, SearchVehicleService>();
+            services.AddScoped<IManagerRenterService, ManagerRenterService>();
+            services.AddScoped<ISearchRentalService, SearchRentalService>();
             return services;
         }
 
@@ -48,15 +54,16 @@ namespace VehicleRental.Infrastructure
             services.AddScoped(typeof(ISaveVehicleCommand), typeof(SaveVehicleCommand));
             services.AddScoped(typeof(IUpdateVehicleCommand), typeof(UpdateVehicleCommand));
             services.AddScoped(typeof(IDeleteVehicleCommand), typeof(DeleteVehicleCommand));
+            services.AddScoped(typeof(ISaveRenterCommand), typeof(SaveRenterCommand));
             return services;
         }
 
         public static IServiceCollection AddQuery(this IServiceCollection services)
         {
             services.AddScoped(typeof(IGetVehicleByIdQuery), typeof(GetVehicleByIdQuery));
+            services.AddScoped(typeof(IGetVehicleByPlateQuery), typeof(GetVehicleByPlateQuery));
             services.AddScoped(typeof(IGetBrandByIdQuery), typeof(GetBrandByIdQuery));
             services.AddScoped(typeof(IGetBrandByNameQuery), typeof(GetBrandByNameQuery));
-            services.AddScoped(typeof(IGetVehicleByPlateQuery), typeof(GetVehicleByPlateQuery));
             return services;
         }
 

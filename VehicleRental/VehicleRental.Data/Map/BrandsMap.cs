@@ -31,10 +31,10 @@ namespace VehicleRental.Data.Map
                 .HasMaxLength(50)
                 .IsRequired();
 
-            builder.HasOne(b => b.Vehicle)
-              .WithMany()
-              .HasPrincipalKey(b => b.Brand_Id)
-              .HasForeignKey(b => b.Id);
+            builder
+                .HasOne(b => b.Vehicle)
+                .WithOne(a => a.Brands)
+                .HasForeignKey<Vehicle>(b => b.Brand_Id);
         }
     }
 }

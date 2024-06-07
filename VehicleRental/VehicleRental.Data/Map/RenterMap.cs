@@ -25,9 +25,9 @@ namespace VehicleRental.Data.Map
                 .IsRequired();
 
             builder
-                .Property(b => b.CNPJ)
+                .Property(b => b.Document)
                 .HasColumnType("character varying")
-                .HasColumnName("cnpj")
+                .HasColumnName("document")
                 .HasMaxLength(14)
                 .IsRequired();
 

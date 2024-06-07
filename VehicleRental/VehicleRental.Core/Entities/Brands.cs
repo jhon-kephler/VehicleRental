@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace VehicleRental.Core.Entities
 {
-    [Table("vehicle")]
+    [Table("brands")]
     public class Brands
     {
         [Column("id")]
