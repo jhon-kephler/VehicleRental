@@ -13,8 +13,5 @@ namespace VehicleRental.Core.Schema.RenterSchemas.RegisterRenterSchema.Request
         public string Name { get; set; }
         public string Document { get; set; }
         public DateTime Birth_Date { get; set; }
-        public string CNH { get; set; }
-        public string CNH_Type { get; set; }
-        public string CNH_Img { get; set; }
     }
 }

@@ -26,6 +26,5 @@ namespace VehicleRental.Core.Entities
         [Column("cnh_img")]
         public string CNH_Img { get; set; }
         public RenterOrder RenterOrder { get; set; }
-        public Vehicle Vehicle { get; set; }
     }
 }

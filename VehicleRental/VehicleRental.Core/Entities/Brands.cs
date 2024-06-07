@@ -13,11 +13,11 @@ namespace VehicleRental.Core.Entities
         [Column("id")]
         public int Id { get; set; }
 
-        [Column("brand_name")]
-        public string Brand_Name { get; set; }
+        [Column("name")]
+        public string Name { get; set; }
 
-        [Column("type_vehicle")]
-        public string Type_Vehicle { get; set; }
+        [Column("type")]
+        public string Type { get; set; }
 
         public Vehicle Vehicle { get; set; }
     }

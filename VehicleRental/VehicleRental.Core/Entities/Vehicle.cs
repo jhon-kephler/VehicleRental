@@ -10,11 +10,8 @@ namespace VehicleRental.Core.Entities
         [Column("id")]
         public int Id { get; set; }
 
-        [Column("year_vehicle")]
-        public int Year_Vehicle { get; set; }
-
-        [Column("brand_id")]
-        public int Brand_Id { get; set; }
+        [Column("year")]
+        public int Year { get; set; }
 
         [Column("model")]
         public string Model { get; set; }
@@ -22,12 +19,17 @@ namespace VehicleRental.Core.Entities
         [Column("plate")]
         public string Plate { get; set; }
 
-        [Column("deliveryman_id")]
-        public int? Renter_Id { get; set; }
+        [Column("brand_id")]
+        public int Brand_Id { get; set; }
 
-        public Renter Renter { get; set; }
+        [Column("status")]
+        public string Status { get; set; }
+
+        [Column("availability")]
+        public bool Availability { get; set; }
 
         public Brands Brands { get; set; }
+        public RenterOrder RenterOrder { get; set; }
 
         public bool ValidatePlate()
         {

@@ -29,9 +29,9 @@ namespace VehicleRental.Data.Map
                 .IsRequired();
 
             builder
-                .Property(b => b.Race_Value)
+                .Property(b => b.Rental_Value)
                 .HasColumnType("numeric")
-                .HasColumnName("race_value")
+                .HasColumnName("rental_value")
                 .IsRequired();
 
             builder
@@ -56,6 +56,19 @@ namespace VehicleRental.Data.Map
               .WithMany()
               .HasPrincipalKey(b => b.Id)
               .HasForeignKey(b => b.Renter_Id);
+
+            builder
+                .HasOne(b => b.Vehicle)
+                .WithOne(v => v.RenterOrder)
+                .HasForeignKey<RenterOrder>(b => b.Vehicle_Id)
+                .HasPrincipalKey<Vehicle>(v => v.Id);
+
+            builder
+                .HasOne(b => b.Renter)
+                .WithOne(v => v.RenterOrder)
+                .HasForeignKey<RenterOrder>(b => b.Renter_Id)
+                .HasPrincipalKey<Renter>(v => v.Id);
+
         }
     }
 }

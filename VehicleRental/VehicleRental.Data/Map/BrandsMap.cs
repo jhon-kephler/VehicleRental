@@ -19,15 +19,15 @@ namespace VehicleRental.Data.Map
                 .IsRequired();
 
             builder
-                .Property(b => b.Brand_Name)
+                .Property(b => b.Name)
                 .HasColumnType("character varying")
-                .HasColumnName("brand_name")
+                .HasColumnName("name")
                 .IsRequired();
 
             builder
-                .Property(b => b.Type_Vehicle)
+                .Property(b => b.Type)
                 .HasColumnType("character varying")
-                .HasColumnName("type_vehicle")
+                .HasColumnName("type")
                 .HasMaxLength(50)
                 .IsRequired();
 

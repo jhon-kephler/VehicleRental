@@ -18,8 +18,5 @@ namespace VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Response
         public string Model { get; set; }
 
         public string Plate { get; set; }
-
-        public int? Renter_Id { get; set; }
-
     }
 }

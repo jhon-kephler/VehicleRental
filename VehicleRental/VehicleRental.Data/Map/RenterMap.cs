@@ -59,11 +59,6 @@ namespace VehicleRental.Data.Map
                 .IsRequired();
 
             builder
-                .HasOne(b => b.Vehicle)
-                .WithOne(a => a.Renter)
-                .HasForeignKey<Vehicle>(b => b.Renter_Id);
-
-            builder
                 .HasOne(b => b.RenterOrder)
                 .WithOne(a => a.Renter)
                 .HasForeignKey<RenterOrder>(b => b.Renter_Id);

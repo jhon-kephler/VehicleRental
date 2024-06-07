@@ -40,14 +40,20 @@ namespace VehicleRental.Application.Services.RenterServices
             return result;
         } 
 
+        public async Task<Result> InsertCnh()
+        {
+            var result = new Result();
+            return result;
+        }
+
         private async Task<Result> ValidateRegister(RegisterRenterRequest request)
         {
             var result = new Result();
             result.IsSuccess = true;
 
-            var cnh = CnhHelper.ValidateCnh(request.CNH);
-            if (!cnh)
-                result.ValidateResult("CNH inválida");
+            //var cnh = CnhHelper.ValidateCnh(request.CNH);
+            //if (!cnh)
+            //    result.ValidateResult("CNH inválida");
 
             if((DateTime.Now.Year - request.Birth_Date.Year) < 18 && (DateTime.Now.Year - request.Birth_Date.Year) > 100)
                 result.ValidateResult("Idade inválida");

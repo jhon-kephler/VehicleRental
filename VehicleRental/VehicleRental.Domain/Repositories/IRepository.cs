@@ -14,5 +14,6 @@ namespace VehicleRental.Domain.Repositories
         IEnumerable<T> GetAll();
         T GetById(int id);
         T GetByName(string name);
+        Task<List<T>> FindByConditionAsync(System.Linq.Expressions.Expression<Func<T, bool>> expression);
     }
 }

@@ -10,6 +10,7 @@ using VehicleRental.Application.Helper;
 using VehicleRental.Core.Schema.VehicleSchemas.PlateSchema.Request;
 using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Request;
 using VehicleRental.Core.Schema.VehicleSchemas.DeleteVehicleSchema.Request;
+using VehicleRental.Data.Query.RenterOrderQuery.Interfaces;
 
 namespace VehicleRental.Application.Services.VehicleServices
 {
@@ -71,7 +72,7 @@ namespace VehicleRental.Application.Services.VehicleServices
             try
             {
                 var vehicle = _mapper.Map<Vehicle>(request);
-                if (vehicle.ValidatePlate())
+                if (!vehicle.ValidatePlate())
                     result.ValidateResult("Placa inválida");
 
                 await _updateVehicleCommand.UpdateVehicle(vehicle);
@@ -91,9 +92,8 @@ namespace VehicleRental.Application.Services.VehicleServices
             {
                 var vehicle = await _getVehicleByIdQuery.GetByIdAsync(request.VehicleId);
 
-                if (vehicle.Renter_Id.HasValue)
+                if (!vehicle.Availability)
                 {
-
                     var brand = await _getBrandByIdQuery.GetByIdAsync(vehicle.Brand_Id);
 
                     var validate = await ValidateVehicle(vehicle, brand);
@@ -120,10 +120,10 @@ namespace VehicleRental.Application.Services.VehicleServices
         {
             var result = new Result();
 
-            if (vehicle.ValidatePlate())
+            if (!vehicle.ValidatePlate())
                 result.ValidateResult("Placa inválida");
 
-            if (vehicle.Brand_Id != brands.Id || brands == null || vehicle.Brand_Id != null)
+            if (vehicle.Brand_Id != brands.Id || brands == null || vehicle.Brand_Id == null)
                 result.ValidateResult("Marca inválida");
 
             return result;

@@ -9,5 +9,7 @@ namespace VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Request
         public string Brand { get; set; }
         public string Model { get; set; }
         public string Plate { get; set; }
+        public string Status { get; set; }
+        public bool Availability { get; set; }
     }
 }

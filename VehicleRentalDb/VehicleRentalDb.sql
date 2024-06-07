@@ -7,36 +7,36 @@ CREATE TABLE renter (
     Name varchar(100) NOT NULL,
     Document varchar(14) NOT NULL,
     Birth_Date TimestampTz NOT NULL,
-    CNH varchar(11) NOT NULL,
-    CNH_Type varchar(10) NOT NULL,
-    CNH_Img varchar(250) NOT NULL
-);
-
-CREATE TABLE renterorder (
-    Id SERIAL PRIMARY KEY NOT NULL,
-    Created_Date TimestampTz NOT NULL,
-    Race_Value numeric NOT NULL,
-    Status varchar(50) NOT NULL,
-    Availability boolean NOT NULL,
-    Renter_Id integer REFERENCES renter(Id)
+    CNH varchar(11) NULL,
+    CNH_Type varchar(10) NULL
 );
 
 CREATE TABLE brands (
     Id SERIAL PRIMARY KEY,
-    Brand_Name varchar(100) NOT NULL,
-    Type_Vehicle varchar(10) NOT NULL
+    Name varchar(100) NOT NULL,
+    Type varchar(10) NOT NULL
 );
 
 CREATE TABLE vehicle (
     Id SERIAL PRIMARY KEY NOT NULL,
-    Year_Vehicle integer NOT NULL,
-    Brand_Id integer NOT NULL REFERENCES brands(Id),
-    Model varchar(50) NOT NULL,
+    Year integer NOT NULL,
     Plate varchar(10) NOT NULL,
-    Renter_Id integer REFERENCES renter(Id)
+    Model varchar(50) NOT NULL,
+    Brand_Id integer NOT NULL REFERENCES brands(Id),
+    Status varchar(50) NOT NULL,
+    Availability boolean NOT NULL
 );
 
-INSERT INTO brands (brand_name, type_vehicle) VALUES
+CREATE TABLE renterorder (
+    Id SERIAL PRIMARY KEY NOT NULL,
+    Rental_Value numeric NOT NULL,
+    Status varchar(50) NOT NULL,
+    Renter_Id integer NOT NULL REFERENCES renter(Id),
+    Vehicle_Id integer NOT NULL REFERENCES vehicle(Id),
+    Created_Date TimestampTz NOT NULL
+);
+
+INSERT INTO brands (name, type) VALUES
 ('Toyota', 'car'),
 ('Ford', 'car'),
 ('Volkswagen', 'car'),

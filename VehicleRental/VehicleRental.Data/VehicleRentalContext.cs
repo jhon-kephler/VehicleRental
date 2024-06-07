@@ -26,10 +26,10 @@ namespace VehicleRental.Data
                         .WithOne(o => o.Renter)
                         .HasForeignKey<RenterOrder>(o => o.Renter_Id);
 
-            modelBuilder.Entity<Renter>()
-                        .HasOne(d => d.Vehicle)
-                        .WithOne(o => o.Renter)
-                        .HasForeignKey<Vehicle>(o => o.Renter_Id);
+            modelBuilder.Entity<Vehicle>()
+                        .HasOne(d => d.RenterOrder)
+                        .WithOne(o => o.Vehicle)
+                        .HasForeignKey<RenterOrder>(o => o.Vehicle_Id);
 
             modelBuilder.Entity<Brands>()
                         .HasOne(d => d.Vehicle)

@@ -15,6 +15,8 @@ using VehicleRental.Data.Command.RenterCommand.Interfaces;
 using VehicleRental.Data.Command.RenterCommand;
 using VehicleRental.Application.Services.RenterServices.Interfaces;
 using VehicleRental.Application.Services.RenterServices;
+using VehicleRental.Data.Query.RenterOrderQuery.Interfaces;
+using VehicleRental.Data.Query.RenterOrderQuery;
 
 namespace VehicleRental.Infrastructure
 {
@@ -64,6 +66,7 @@ namespace VehicleRental.Infrastructure
             services.AddScoped(typeof(IGetVehicleByPlateQuery), typeof(GetVehicleByPlateQuery));
             services.AddScoped(typeof(IGetBrandByIdQuery), typeof(GetBrandByIdQuery));
             services.AddScoped(typeof(IGetBrandByNameQuery), typeof(GetBrandByNameQuery));
+            services.AddScoped(typeof(IListRenterOrderByRenterIdQuery), typeof(ListRenterOrderByRenterIdQuery));
             return services;
         }
 

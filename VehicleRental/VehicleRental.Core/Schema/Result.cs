@@ -4,7 +4,7 @@ namespace VehicleRental.Core.Schema
 {
     public class Result<T>
     {
-        public bool IsSuccess { get; set; }
+        public bool IsSuccess { get; set; } = true;
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int StatusCode => IsSuccess ? 200 : 500;
