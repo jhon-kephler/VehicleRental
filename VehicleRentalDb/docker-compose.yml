@@ -1,0 +1,21 @@
+services:
+  db:
+    container_name: postgres_container
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: sa
+      POSTGRES_PASSWORD: V3hicl3rent@l
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./VehicleRentalDb.sql:/docker-entrypoint-initdb.d/VehicleRentalDb.sql
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@vehiclerental.com
+      PGADMIN_DEFAULT_PASSWORD: V3hiclerent@l
+    ports:
+      - "8080:80"
