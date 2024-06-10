@@ -5,7 +5,7 @@ This is a study project to apply concepts I have been studying
 
 ## Documentation
 
-[Documentation](https://miro.com/welcomeonboard/aWI2amRIYVhIWXFYNmEwcm83OU5jMU92NkQ2cER5Q1RZVHVNQzYxZXo1UEVndkQ3blAyOTZXdlhLZEs5T2ozb3wzNDU4NzY0NTg0MTk1OTExODM3fDI=?share_link_id=402213528546)
+[Diagrams](https://miro.com/welcomeonboard/aWI2amRIYVhIWXFYNmEwcm83OU5jMU92NkQ2cER5Q1RZVHVNQzYxZXo1UEVndkQ3blAyOTZXdlhLZEs5T2ozb3wzNDU4NzY0NTg0MTk1OTExODM3fDI=?share_link_id=402213528546)
 
 ## How to
 
