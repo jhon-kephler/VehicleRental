@@ -6,5 +6,6 @@ namespace VehicleRental.Application.Services.RenterServices.Interfaces
     public interface IManagerRenterService
     {
         Task<Result> CreateRenter(RegisterRenterRequest request);
+        Task<Result> InsertCnh(InsertRentalCNHRequest request);
     }
 }

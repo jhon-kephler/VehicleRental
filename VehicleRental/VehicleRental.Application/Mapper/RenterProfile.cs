@@ -20,7 +20,7 @@ namespace VehicleRental.Application.Mapper
 
             CreateMap<InsertRentalCNHRequest, Renter>()
                 .ForMember(dest => dest.CNH, src => src.MapFrom(x => x.Cnh))
-                .ForMember(dest => dest.CNH_Img, src => src.MapFrom(x => x.Cnh_Img))
+                .ForMember(dest => dest.CNH_Img_Url, src => src.MapFrom(x => x.Cnh_Img_Url))
                 .ForMember(dest => dest.CNH_Type, src => src.MapFrom(x => x.Cnh_Type));
         }
     }

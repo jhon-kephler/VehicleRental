@@ -12,6 +12,6 @@ namespace VehicleRental.Core.Schema.RenterSchemas.RegisterRenterSchema.Request
         public int Rental_Id { get; set; }
         public string Cnh { get; set; }
         public string Cnh_Type { get; set; }
-        public string Cnh_Img { get; set; }
+        public string Cnh_Img_Url { get; set; }
     }
 }

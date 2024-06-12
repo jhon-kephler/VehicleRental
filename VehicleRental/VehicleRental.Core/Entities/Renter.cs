@@ -23,8 +23,8 @@ namespace VehicleRental.Core.Entities
         [Column("cnh_type")]
         public string CNH_Type { get; set; }
 
-        [Column("cnh_img")]
-        public string CNH_Img { get; set; }
+        [Column("cnh_img_url")]
+        public string CNH_Img_Url { get; set; }
         public RenterOrder RenterOrder { get; set; }
     }
 }

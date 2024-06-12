@@ -52,9 +52,9 @@ namespace VehicleRental.Data.Map
                 .IsRequired();
 
             builder
-                .Property(b => b.CNH_Img)
+                .Property(b => b.CNH_Img_Url)
                 .HasColumnType("character varying")
-                .HasColumnName("cnh_img")
+                .HasColumnName("cnh_img_url")
                 .HasMaxLength(250)
                 .IsRequired();
 

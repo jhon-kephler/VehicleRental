@@ -8,7 +8,8 @@ CREATE TABLE renter (
     Document varchar(14) NOT NULL,
     Birth_Date TimestampTz NOT NULL,
     CNH varchar(11) NULL,
-    CNH_Type varchar(10) NULL
+    CNH_Type varchar(10) NULL,
+    CNH_Img_URL varchar(250) NULL
 );
 
 CREATE TABLE brands (

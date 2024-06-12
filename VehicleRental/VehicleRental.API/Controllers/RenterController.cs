@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using VehicleRental.Core.Schema;
 using VehicleRental.Core.Schema.RenterSchemas.RegisterRenterSchema.Request;
-using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Request;
-using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Response;
 
 namespace VehicleRental.API.Controllers
 {
@@ -23,6 +21,10 @@ namespace VehicleRental.API.Controllers
 
         [HttpPost()]
         public Task<Result> PostNewRenter(RegisterRenterRequest request) =>
+            _mediator.Send(request);
+
+        [HttpPost("Cnh")]
+        public Task<Result> PostCnhRenter(InsertRentalCNHRequest request) =>
             _mediator.Send(request);
     }
 }
