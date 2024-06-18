@@ -78,7 +78,13 @@ namespace VehicleRental.Data.Repositories
 
         public T GetById(int id) => _dbSet.Find(id);
 
-        public T GetByName(string name) => _dbSet.SingleOrDefault(entity => EF.Property<string>(entity, "Name") == name);
+        public T GetByName(string name) => _dbSet.SingleOrDefault(entity => EF.Property<string>(entity, "name") == name);
+
+        public T GetByPlate(string plate) => _dbSet.SingleOrDefault(entity => EF.Property<string>(entity, "plate") == plate);
+
+        public T GetByDocument(string document) => _dbSet.SingleOrDefault(entity => EF.Property<string>(entity, "document") == document);
+
+        public T GetByCnh(string cnh) => _dbSet.SingleOrDefault(entity => EF.Property<string>(entity, "cnh") == cnh);
 
         public async Task<List<T>> FindByConditionAsync(System.Linq.Expressions.Expression<Func<T, bool>> expression) =>
                                                         await _dbSet.Where(expression).ToListAsync();

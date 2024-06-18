@@ -59,6 +59,12 @@ namespace VehicleRental.Data.Map
                 .IsRequired();
 
             builder
+                .Property(b => b.CNH_Expiration_Date)
+                .HasColumnType("timestamp")
+                .HasColumnName("cnh_expiration_date")
+                .IsRequired();
+
+            builder
                 .HasOne(b => b.RenterOrder)
                 .WithOne(a => a.Renter)
                 .HasForeignKey<RenterOrder>(b => b.Renter_Id);

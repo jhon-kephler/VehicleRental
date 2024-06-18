@@ -25,6 +25,9 @@ namespace VehicleRental.Core.Entities
 
         [Column("cnh_img_url")]
         public string CNH_Img_Url { get; set; }
+
+        [Column("cnh_expiration_date")]
+        public DateTime CNH_Expiration_Date { get; set; }
         public RenterOrder RenterOrder { get; set; }
     }
 }

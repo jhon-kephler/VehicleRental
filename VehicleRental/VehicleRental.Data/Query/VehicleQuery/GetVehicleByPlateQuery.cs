@@ -16,7 +16,7 @@ namespace VehicleRental.Data.Query.VehicleQuery
         public async Task<Vehicle> GetByPlateAsync(string plate)
         {
             var result = new Vehicle();
-            result = _repository.GetByName(plate);
+            result = _repository.GetByPlate(plate);
             return result;
         }
 

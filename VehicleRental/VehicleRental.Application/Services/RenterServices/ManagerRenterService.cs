@@ -107,6 +107,10 @@ namespace VehicleRental.Application.Services.RenterServices
             var cnh_Url = CnhHelper.ValidateUrl(request.Cnh_Img_Url);
             if (!cnh_Url)
                 result.ValidateResult("Url inválido");
+
+            if(request.Expiration_Date.Date < DateTime.Now.Date)
+                result.ValidateResult("Cnh expirada");
+
             return result;
         }
     }

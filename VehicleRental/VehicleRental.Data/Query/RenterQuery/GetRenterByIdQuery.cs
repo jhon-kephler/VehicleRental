@@ -24,5 +24,19 @@ namespace VehicleRental.Data.Query.RenterQuery
             result = _repository.GetById(id);
             return result;
         }
+
+        public async Task<Renter> GetRenterByDocumentAsync(string document)
+        {
+            var result = new Renter();
+            result = _repository.GetByDocument(document);
+            return result;
+        }
+
+        public async Task<Renter> GetRenterByCnhAsync(string cnh)
+        {
+            var result = new Renter();
+            result = _repository.GetByCnh(cnh);
+            return result;
+        }
     }
 }
