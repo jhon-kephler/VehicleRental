@@ -41,28 +41,24 @@ namespace VehicleRental.Data.Map
                 .Property(b => b.CNH)
                 .HasColumnType("character varying")
                 .HasColumnName("cnh")
-                .HasMaxLength(11)
-                .IsRequired();
+                .HasMaxLength(11);
 
             builder
                 .Property(b => b.CNH_Type)
                 .HasColumnType("character varying")
                 .HasColumnName("id")
-                .HasMaxLength(10)
-                .IsRequired();
+                .HasMaxLength(10);
 
             builder
                 .Property(b => b.CNH_Img_Url)
                 .HasColumnType("character varying")
                 .HasColumnName("cnh_img_url")
-                .HasMaxLength(250)
-                .IsRequired();
+                .HasMaxLength(250);
 
             builder
                 .Property(b => b.CNH_Expiration_Date)
                 .HasColumnType("timestamp")
-                .HasColumnName("cnh_expiration_date")
-                .IsRequired();
+                .HasColumnName("cnh_expiration_date");
 
             builder
                 .HasOne(b => b.RenterOrder)

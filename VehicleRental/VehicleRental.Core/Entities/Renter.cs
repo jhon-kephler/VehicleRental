@@ -18,16 +18,17 @@ namespace VehicleRental.Core.Entities
         public DateTime Birth_Date { get; set; }
 
         [Column("cnh")]
-        public string CNH { get; set; }
+        public string? CNH { get; set; }
 
         [Column("cnh_type")]
-        public string CNH_Type { get; set; }
+        public string? CNH_Type { get; set; }
 
         [Column("cnh_img_url")]
-        public string CNH_Img_Url { get; set; }
+        public string? CNH_Img_Url { get; set; }
 
         [Column("cnh_expiration_date")]
-        public DateTime CNH_Expiration_Date { get; set; }
+        public DateTime? CNH_Expiration_Date { get; set; }
+
         public RenterOrder RenterOrder { get; set; }
     }
 }

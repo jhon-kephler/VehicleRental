@@ -10,7 +10,7 @@ CREATE TABLE renter (
     CNH varchar(11) NULL,
     CNH_Type varchar(10) NULL,
     CNH_Img_URL varchar(250) NULL,
-    Cnh_Expiration_Date TimestampTz NOT NULL
+    Cnh_Expiration_Date TimestampTz NULL
 );
 
 CREATE TABLE brands (
