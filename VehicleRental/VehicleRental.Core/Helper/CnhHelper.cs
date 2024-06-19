@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace VehicleRental.Application.Helper
+namespace VehicleRental.Core.Helper
 {
     public class CnhHelper
     {
@@ -52,13 +52,13 @@ namespace VehicleRental.Application.Helper
 
             var result = cnh_Type switch
             {
-                "ACC" => true,
+                "ACC" => false,
                 "A"  => true,
                 "AB" => true,
                 "B"  => true,
-                "C"  => true,
-                "D"  => true,
-                "E"  => true,
+                "C"  => false,
+                "D"  => false,
+                "E"  => false,
                 _ => false
             };
 

@@ -1,4 +1,4 @@
-﻿using VehicleRental.Core.Entities;
+﻿using VehicleRental.Domain.Entities;
 
 namespace VehicleRental.Data.Query.RenterQuery.Interfaces
 {

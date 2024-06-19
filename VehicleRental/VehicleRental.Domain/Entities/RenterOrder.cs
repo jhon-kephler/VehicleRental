@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace VehicleRental.Core.Entities
+namespace VehicleRental.Domain.Entities
 {
     [Table("renterorder")]
     public class RenterOrder
@@ -16,9 +16,6 @@ namespace VehicleRental.Core.Entities
 
         [Column("status")]
         public string Status { get; set; }
-
-        [Column("availability")]
-        public bool Availability { get; set; }
 
         [Column("renter_id")]
         public int? Renter_Id { get; set; }

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using VehicleRental.Application.Helper;
+using VehicleRental.Core.Helper;
 using VehicleRental.Application.Services.RenterServices.Interfaces;
-using VehicleRental.Core.Entities;
+using VehicleRental.Domain.Entities;
 using VehicleRental.Core.Schema;
 using VehicleRental.Core.Schema.RenterSchemas.RegisterRenterSchema.Request;
 using VehicleRental.Data.Command.RenterCommand.Interfaces;

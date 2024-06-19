@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using VehicleRental.Core.Entities;
+using VehicleRental.Domain.Entities;
 
 namespace VehicleRental.Data.Map
 {

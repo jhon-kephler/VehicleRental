@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using VehicleRental.Core.Entities;
+using VehicleRental.Domain.Entities;
 using VehicleRental.Core.Schema;
 using VehicleRental.Application.Services.VehicleServices.Interfaces;
 using VehicleRental.Data.Command.VehicleCommand.Interfaces;
 using VehicleRental.Data.Query.VehicleQuery.Interfaces;
 using static VehicleRental.Data.Command.VehicleCommand.DeleteVehicleCommand;
 using VehicleRental.Data.Query.BrandQuery.Interfaces;
-using VehicleRental.Application.Helper;
+using VehicleRental.Core.Helper;
 using VehicleRental.Core.Schema.VehicleSchemas.PlateSchema.Request;
 using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Request;
 using VehicleRental.Core.Schema.VehicleSchemas.DeleteVehicleSchema.Request;
@@ -103,7 +103,7 @@ namespace VehicleRental.Application.Services.VehicleServices
                         return result;
                     }
 
-                    await _deleteVehicleCommand.DeleteVehicle(_mapper.Map<DeleteVehicleQuery>(request));
+                    await _deleteVehicleCommand.DeleteVehicle(request.VehicleId);
                     result.IsSuccess = true;
                 }
                 else

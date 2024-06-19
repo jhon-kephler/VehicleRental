@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VehicleRental.Core.Entities;
+using VehicleRental.Domain.Entities;
 using VehicleRental.Core.Schema.RenterSchemas.RegisterRenterSchema.Request;
 using VehicleRental.Core.Schema.RenterSchemas.SearchRenterSchema.Response;
 
-namespace VehicleRental.Application.Mapper
+namespace VehicleRental.Core.Mapper
 {
     public class RenterProfile : Profile
     {

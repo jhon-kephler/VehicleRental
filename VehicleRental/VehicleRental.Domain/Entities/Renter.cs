@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace VehicleRental.Core.Entities
+namespace VehicleRental.Domain.Entities
 {
     [Table("renter")]
     public class Renter

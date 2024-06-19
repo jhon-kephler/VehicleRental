@@ -1,19 +1,20 @@
 ﻿using VehicleRental.Domain.Entities;
-using VehicleRental.Data.Command.RenterCommand.Interfaces;
 using VehicleRental.Domain.Repositories;
 
-namespace VehicleRental.Data.Command.RenterCommand
+namespace VehicleRental.Data.Command.OrderCommand
 {
-    public class SaveRenterCommand : ISaveRenterCommand
-    {
-        private IRepository<Renter> _repository;
+    public interface ISaveOrderCommand { Task SaveRenterOrder(RenterOrder request); }
 
-        public SaveRenterCommand(IRepository<Renter> repository)
+    public class SaveOrderCommand : ISaveOrderCommand
+    {
+        private IRepository<RenterOrder> _repository;
+
+        public SaveOrderCommand(IRepository<RenterOrder> repository)
         {
             _repository = repository;
         }
 
-        public Task SaveRenter(Renter request)
+        public Task SaveRenterOrder(RenterOrder request)
         {
             try
             {

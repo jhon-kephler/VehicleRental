@@ -1,5 +1,5 @@
 ﻿using VehicleRental.Data.Command.VehicleCommand.Interfaces;
-using VehicleRental.Core.Entities;
+using VehicleRental.Domain.Entities;
 using VehicleRental.Domain.Repositories;
 
 namespace VehicleRental.Data.Command.VehicleCommand
@@ -13,22 +13,17 @@ namespace VehicleRental.Data.Command.VehicleCommand
             _repository = repository;
         }
 
-        public Task DeleteVehicle(DeleteVehicleQuery request)
+        public Task DeleteVehicle(int id)
         {
             try
             {
-                _repository.Delete(request.Id);
+                _repository.Delete(id);
                 return Task.CompletedTask;
             }
             catch (Exception ex)
             {
                 return Task.FromException(ex);
             }
-        }
-
-        public class DeleteVehicleQuery
-        {
-            public int Id { get; set; }
         }
     }
 }

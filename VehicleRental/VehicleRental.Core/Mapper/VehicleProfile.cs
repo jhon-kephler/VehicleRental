@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-using VehicleRental.Core.Entities;
-using static VehicleRental.Data.Command.VehicleCommand.DeleteVehicleCommand;
+using VehicleRental.Domain.Entities;
 using VehicleRental.Core.Schema.VehicleSchemas.PlateSchema.Request;
 using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Request;
 using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Response;
-using VehicleRental.Core.Schema.VehicleSchemas.DeleteVehicleSchema.Request;
 
-namespace VehicleRental.Application.Mapper
+namespace VehicleRental.Core.Mapper
 {
     public class VehicleProfile : Profile
     {
@@ -16,15 +14,11 @@ namespace VehicleRental.Application.Mapper
                 .ForMember(dest => dest.Year, src => src.MapFrom(x => x.Year_Vehicle))
                 .ForMember(dest => dest.Model, src => src.MapFrom(x => x.Model))
                 .ForMember(dest => dest.Plate, src => src.MapFrom(x => x.Plate))
-                .ForMember(dest => dest.Status, src => src.MapFrom(x => x.Status))
                 .ForMember(dest => dest.Availability, src => src.MapFrom(x => x.Availability));
 
             CreateMap<PlateRequest, Vehicle>()
                 .ForMember(dest => dest.Id, src => src.MapFrom(x => x.VehicleId))
                 .ForMember(dest => dest.Plate, src => src.MapFrom(x => x.Plate));
-
-            CreateMap<DeleteVehicleRequest, DeleteVehicleQuery>()
-                .ForMember(dest => dest.Id, src => src.MapFrom(x => x.VehicleId));
 
             CreateMap<Vehicle, SearchVehicleResponse>()
                 .ForMember(dest => dest.Vehicle_Id, src => src.MapFrom(x => x.Id))

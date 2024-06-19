@@ -1,5 +1,5 @@
 ﻿using VehicleRental.Data.Command.VehicleCommand.Interfaces;
-using VehicleRental.Core.Entities;
+using VehicleRental.Domain.Entities;
 using VehicleRental.Data.Repositories;
 using VehicleRental.Domain.Repositories;
 

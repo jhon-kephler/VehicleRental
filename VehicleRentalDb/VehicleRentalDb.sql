@@ -25,7 +25,6 @@ CREATE TABLE vehicle (
     Plate varchar(10) NOT NULL,
     Model varchar(50) NOT NULL,
     Brand_Id integer NOT NULL REFERENCES brands(Id),
-    Status varchar(50) NOT NULL,
     Availability boolean NOT NULL
 );
 

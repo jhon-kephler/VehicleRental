@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VehicleRental.Core.Entities;
+using VehicleRental.Domain.Entities;
 
 namespace VehicleRental.Data.Map
 {
@@ -39,12 +39,6 @@ namespace VehicleRental.Data.Map
                 .HasColumnType("character varying")
                 .HasColumnName("status")
                 .HasMaxLength(50)
-                .IsRequired();
-
-            builder
-                .Property(b => b.Availability)
-                .HasColumnType("boolean")
-                .HasColumnName("availability")
                 .IsRequired();
 
             builder

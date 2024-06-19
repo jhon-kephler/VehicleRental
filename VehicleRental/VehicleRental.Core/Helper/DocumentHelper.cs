@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VehicleRental.Application.Helper
+namespace VehicleRental.Core.Helper
 {
     public class DocumentHelper
     {

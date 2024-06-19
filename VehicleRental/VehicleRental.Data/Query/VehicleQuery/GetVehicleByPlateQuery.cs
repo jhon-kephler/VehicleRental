@@ -1,4 +1,4 @@
-﻿using VehicleRental.Core.Entities;
+﻿using VehicleRental.Domain.Entities;
 using VehicleRental.Data.Query.VehicleQuery.Interfaces;
 using VehicleRental.Domain.Repositories;
 

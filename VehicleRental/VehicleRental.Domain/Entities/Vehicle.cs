@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
-namespace VehicleRental.Core.Entities
+namespace VehicleRental.Domain.Entities
 {
     [Table("vehicle")]
     public class Vehicle
@@ -21,9 +20,6 @@ namespace VehicleRental.Core.Entities
 
         [Column("brand_id")]
         public int Brand_Id { get; set; }
-
-        [Column("status")]
-        public string Status { get; set; }
 
         [Column("availability")]
         public bool Availability { get; set; }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Xml;
-using VehicleRental.Core.Entities;
+using VehicleRental.Domain.Entities;
 
 namespace VehicleRental.Data
 {

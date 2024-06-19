@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using VehicleRental.Core.Entities;
+using VehicleRental.Domain.Entities;
 
 namespace VehicleRental.Data.Map
 {
@@ -43,6 +43,12 @@ namespace VehicleRental.Data.Map
                 .HasColumnType("character varying")
                 .HasColumnName("plate")
                 .HasMaxLength(10)
+                .IsRequired();
+
+            builder
+                .Property(b => b.Availability)
+                .HasColumnType("boolean")
+                .HasColumnName("availability")
                 .IsRequired();
 
             builder

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VehicleRental.Core.Entities
+namespace VehicleRental.Domain.Entities
 {
     [Table("brands")]
     public class Brands
