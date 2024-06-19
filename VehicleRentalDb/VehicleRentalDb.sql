@@ -14,7 +14,7 @@ CREATE TABLE renter (
 );
 
 CREATE TABLE brands (
-    Id SERIAL PRIMARY KEY,
+    Id SERIAL PRIMARY KEY NOT NULL,
     Name varchar(100) NOT NULL,
     Type varchar(10) NOT NULL
 );

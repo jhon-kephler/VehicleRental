@@ -22,13 +22,14 @@ namespace VehicleRental.Data.Map
                 .Property(b => b.Name)
                 .HasColumnType("character varying")
                 .HasColumnName("name")
+                .HasMaxLength(100)
                 .IsRequired();
 
             builder
                 .Property(b => b.Type)
                 .HasColumnType("character varying")
                 .HasColumnName("type")
-                .HasMaxLength(50)
+                .HasMaxLength(10)
                 .IsRequired();
 
             builder

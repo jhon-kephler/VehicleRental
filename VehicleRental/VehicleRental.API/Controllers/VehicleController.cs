@@ -23,7 +23,7 @@ namespace VehicleRental.API.Controllers
         }
 
         [HttpGet()]
-        public Task<Result<SearchVehicleResponse>> Get(SearchVehicleByIdRequest request) =>
+        public Task<Result<SearchVehicleResponse>> Get([FromQuery] SearchVehicleByIdRequest request) =>
             _mediator.Send(request);
 
         [HttpPost()]
@@ -31,11 +31,11 @@ namespace VehicleRental.API.Controllers
             _mediator.Send(request);
 
         [HttpDelete()]
-        public Task<Result> DeleteVehicle(DeleteVehicleRequest request) =>
+        public Task<Result> DeleteVehicle([FromQuery] DeleteVehicleRequest request) =>
             _mediator.Send(request);
 
         [HttpGet("Plate")]
-        public Task<Result<SearchVehicleResponse>> Get(SearchVehicleByPlateRequest request) =>
+        public Task<Result<SearchVehicleResponse>> Get([FromQuery] SearchVehicleByPlateRequest request) =>
             _mediator.Send(request);
 
         [HttpPost("Plate")]

@@ -42,7 +42,7 @@ namespace VehicleRental.Infrastructure
         public static IServiceCollection AddHandler(this IServiceCollection services)
         {
             services.AddMediatR(configuration => configuration.RegisterServicesFromAssembly(Application.AssemblyReference.Assembly));
-            services.AddAutoMapper(Application.AssemblyReference.Assembly);
+            services.AddAutoMapper(Core.AssemblyReference.Assembly);
 
             return services;
         }

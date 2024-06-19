@@ -6,6 +6,7 @@ using VehicleRental.Core.Schema;
 using VehicleRental.Core.Schema.RenterSchemas.RegisterRenterSchema.Request;
 using VehicleRental.Data.Command.RenterCommand.Interfaces;
 using VehicleRental.Data.Query.RenterQuery.Interfaces;
+using VehicleRental.Core.Schema.RenterSchemas;
 
 namespace VehicleRental.Application.Services.RenterServices
 {
@@ -65,8 +66,10 @@ namespace VehicleRental.Application.Services.RenterServices
 
             try
             {
-                renter = _mapper.Map<Renter>(request);
-                await _saveRenterCnhCommand.SaveCnhRenter(renter);
+                var renterSchema = new RenterSchema(request.Rental_Id, renter.Name,renter.Document, renter.Birth_Date, request.Cnh, 
+                                                    request.Cnh_Type, request.Cnh_Img_Url, request.Expiration_Date);
+
+                await _saveRenterCnhCommand.SaveCnhRenter(_mapper.Map<Renter>(renterSchema));
             }
             catch(Exception ex)
             {

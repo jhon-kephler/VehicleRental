@@ -4,13 +4,11 @@ using VehicleRental.Core.Schema;
 using VehicleRental.Application.Services.VehicleServices.Interfaces;
 using VehicleRental.Data.Command.VehicleCommand.Interfaces;
 using VehicleRental.Data.Query.VehicleQuery.Interfaces;
-using static VehicleRental.Data.Command.VehicleCommand.DeleteVehicleCommand;
 using VehicleRental.Data.Query.BrandQuery.Interfaces;
 using VehicleRental.Core.Helper;
 using VehicleRental.Core.Schema.VehicleSchemas.PlateSchema.Request;
 using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Request;
 using VehicleRental.Core.Schema.VehicleSchemas.DeleteVehicleSchema.Request;
-using VehicleRental.Data.Query.RenterOrderQuery.Interfaces;
 
 namespace VehicleRental.Application.Services.VehicleServices
 {
@@ -51,6 +49,7 @@ namespace VehicleRental.Application.Services.VehicleServices
 
                 var vehicle = _mapper.Map<Vehicle>(request);
                 vehicle.Brand_Id = brand.Id;
+                vehicle.Model = BrandHelper.FormatName(vehicle.Model);
 
                 var validate = await ValidateVehicle(vehicle, brand);
                 if (!validate.IsSuccess)

@@ -3,25 +3,13 @@ using System.Text.RegularExpressions;
 
 namespace VehicleRental.Domain.Entities
 {
-    [Table("vehicle")]
     public class Vehicle
     {
-        [Column("id")]
         public int Id { get; set; }
-
-        [Column("year")]
         public int Year { get; set; }
-
-        [Column("model")]
         public string Model { get; set; }
-
-        [Column("plate")]
         public string Plate { get; set; }
-
-        [Column("brand_id")]
         public int Brand_Id { get; set; }
-
-        [Column("availability")]
         public bool Availability { get; set; }
 
         public Brands Brands { get; set; }
