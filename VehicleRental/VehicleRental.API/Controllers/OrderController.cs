@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using VehicleRental.Core.Schema;
 using VehicleRental.Core.Schema.OrderSchemas.Request;
-using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Request;
-using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Response;
+using VehicleRental.Core.Schema.OrderSchemas.Response;
 
 namespace VehicleRental.API.Controllers
 {
@@ -21,8 +20,21 @@ namespace VehicleRental.API.Controllers
             _mediator = mediator;
         }
 
+
+        [HttpGet()]
+        public Task<Result<OrderResponse>> Get([FromQuery] SearchOrderByIdRequest request) =>
+                _mediator.Send(request);
+
+        [HttpGet("Document")]
+        public Task<Result<OrderResponse>> GetByDocument([FromQuery] SearchOrderByDocumentRequest request) =>
+                _mediator.Send(request);
+
+        [HttpGet("Cnh")]
+        public Task<Result<OrderResponse>> GetByCnh([FromQuery] SearchOrderByCnhRequest request) =>
+                _mediator.Send(request);
+
         [HttpPost()]
-        public Task<Result> Get(NewOrderRequest request) =>
+        public Task<Result> Post(NewOrderRequest request) =>
             _mediator.Send(request);
     }
 }

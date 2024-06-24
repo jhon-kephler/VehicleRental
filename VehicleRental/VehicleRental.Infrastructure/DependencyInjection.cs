@@ -75,7 +75,7 @@ namespace VehicleRental.Infrastructure
             services.AddScoped(typeof(IGetVehicleByPlateQuery), typeof(GetVehicleByPlateQuery));
             services.AddScoped(typeof(IGetBrandByIdQuery), typeof(GetBrandByIdQuery));
             services.AddScoped(typeof(IGetBrandByNameQuery), typeof(GetBrandByNameQuery));
-            services.AddScoped(typeof(IListRenterOrderByRenterIdQuery), typeof(ListRenterOrderByRenterIdQuery));
+            services.AddScoped(typeof(IGetRenterOrderByRenterIdQuery), typeof(GetRenterOrderByRenterIdQuery));
             services.AddScoped(typeof(IGetRenterByIdQuery), typeof(GetRenterByIdQuery));
             return services;
         }

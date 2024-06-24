@@ -9,6 +9,7 @@ using VehicleRental.Data.Query.VehicleQuery.Interfaces;
 using VehicleRental.Data.Command.OrderCommand;
 using AutoMapper;
 using VehicleRental.Core.Schema.OrderSchemas.Response;
+using VehicleRental.Data.Command.VehicleCommand.Interfaces;
 
 namespace VehicleRental.Application.Services.OrderServices
 {
@@ -18,16 +19,19 @@ namespace VehicleRental.Application.Services.OrderServices
         private readonly IGetRenterByIdQuery _getRenterByIdQuery;
         private readonly IGetVehicleByIdQuery _vehicleByIdQuery;
         private readonly ISaveOrderCommand _saveOrderCommand;
+        private readonly IUpdateVehicleCommand _updateVehicleCommand;
 
         public ManagerOrderService(IMapper mapper, 
             IGetRenterByIdQuery getRenterByIdQuery, 
             IGetVehicleByIdQuery vehicleByIdQuery, 
-            ISaveOrderCommand saveOrderCommand)
+            ISaveOrderCommand saveOrderCommand,
+            IUpdateVehicleCommand updateVehicleCommand)
         {
             _mapper = mapper;
             _getRenterByIdQuery = getRenterByIdQuery;
             _vehicleByIdQuery = vehicleByIdQuery;
             _saveOrderCommand = saveOrderCommand;
+            _updateVehicleCommand = updateVehicleCommand;
         }
 
         public async Task<Result> NewOrder(NewOrderRequest request)
@@ -48,6 +52,10 @@ namespace VehicleRental.Application.Services.OrderServices
             {
                 var order = new OrderResponse(await PlansValues(request.Rental_Days), "leased", renter.Id, vehicle.Id);
                 await _saveOrderCommand.SaveRenterOrder(_mapper.Map<RenterOrder>(order));
+
+                vehicle.Availability = false;
+                await _updateVehicleCommand.UpdateVehicle(vehicle);
+
                 result.IsSuccess = true;
             }
             catch (Exception ex)
