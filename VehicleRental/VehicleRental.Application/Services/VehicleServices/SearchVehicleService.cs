@@ -3,23 +3,21 @@ using VehicleRental.Application.Services.VehicleServices.Interfaces;
 using VehicleRental.Core.Schema;
 using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Request;
 using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Response;
-using VehicleRental.Data.Query.VehicleQuery.Interfaces;
+using VehicleRental.Domain.Entities;
+using VehicleRental.Domain.Repositories;
 
 namespace VehicleRental.Application.Services.VehicleServices
 {
     public class SearchVehicleService : ISearchVehicleService
     {
         public readonly IMapper _mapper;
-        public readonly IGetVehicleByIdQuery _getVehicleByIdQuery;
-        public readonly IGetVehicleByPlateQuery _getVehicleByPlateQuery;
+        public readonly IRepository<Vehicle> _vehicleRepository;
 
-        public SearchVehicleService(IMapper mapper,
-            IGetVehicleByIdQuery getVehicleByIdQuery,
-            IGetVehicleByPlateQuery getVehicleByPlateQuery)
+        public SearchVehicleService(IMapper mapper, 
+            IRepository<Vehicle> vehicleRepository)
         {
             _mapper = mapper;
-            _getVehicleByIdQuery = getVehicleByIdQuery;
-            _getVehicleByPlateQuery = getVehicleByPlateQuery;
+            _vehicleRepository = vehicleRepository;
         }
 
         public async Task<Result<SearchVehicleResponse>> SearchVehicleById(SearchVehicleByIdRequest request)
@@ -28,7 +26,7 @@ namespace VehicleRental.Application.Services.VehicleServices
 
             try
             {
-                var vehicle = await _getVehicleByIdQuery.GetByIdAsync(request.Vehicle_Id);
+                var vehicle = _vehicleRepository.GetById(request.Vehicle_Id);
                 if (vehicle == null)
                     result.ValidateResult("Vehicle_Id inválido");
                 else
@@ -50,7 +48,7 @@ namespace VehicleRental.Application.Services.VehicleServices
 
             try
             {
-                var vehicle = await _getVehicleByPlateQuery.GetByPlateAsync(request.Plate);
+                var vehicle = _vehicleRepository.GetByPlate(request.Plate);
                 if (vehicle == null)
                     result.ValidateResult("Placa inválida");
                 else

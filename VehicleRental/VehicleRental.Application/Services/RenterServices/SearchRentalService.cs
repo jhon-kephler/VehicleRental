@@ -3,19 +3,21 @@ using VehicleRental.Application.Services.RenterServices.Interfaces;
 using VehicleRental.Core.Schema;
 using VehicleRental.Core.Schema.RenterSchemas.SearchRenterSchema.Request;
 using VehicleRental.Core.Schema.RenterSchemas.SearchRenterSchema.Response;
-using VehicleRental.Data.Query.RenterQuery.Interfaces;
+using VehicleRental.Domain.Entities;
+using VehicleRental.Domain.Repositories;
 
 namespace VehicleRental.Application.Services.RenterServices
 {
     public class SearchRentalService : ISearchRentalService
     {
         private readonly IMapper _mapper;
-        private readonly IGetRenterByIdQuery _getRenterByIdQuery;
+        private readonly IRepository<Renter> _renterRepository;
 
-        public SearchRentalService(IMapper mapper, IGetRenterByIdQuery getRenterByIdQuery)
+        public SearchRentalService(IMapper mapper, 
+            IRepository<Renter> renterRepository)
         {
             _mapper = mapper;
-            _getRenterByIdQuery = getRenterByIdQuery;
+            _renterRepository = renterRepository;
         }
 
         public async Task<Result<SearchRentalResponse>> SearchRentalById(SearchRentalByIdRequest request)
@@ -24,7 +26,7 @@ namespace VehicleRental.Application.Services.RenterServices
 
             try
             {
-                var rental = await _getRenterByIdQuery.GetByIdAsync(request.Rental_Id);
+                var rental = _renterRepository.GetById(request.Rental_Id);
                 result.SetSuccess(_mapper.Map<SearchRentalResponse>(rental));
             }
             catch (Exception ex)
@@ -41,7 +43,7 @@ namespace VehicleRental.Application.Services.RenterServices
 
             try
             {
-                var rental = await _getRenterByIdQuery.GetRenterByDocumentAsync(request.Document);
+                var rental = _renterRepository.GetByDocument(request.Document);
                 result.SetSuccess(_mapper.Map<SearchRentalResponse>(rental));
             }
             catch (Exception ex)
@@ -58,7 +60,7 @@ namespace VehicleRental.Application.Services.RenterServices
 
             try
             {
-                var rental = await _getRenterByIdQuery.GetRenterByCnhAsync(request.Cnh);
+                var rental = _renterRepository.GetByCnh(request.Cnh);
                 result.SetSuccess(_mapper.Map<SearchRentalResponse>(rental));
             }
             catch (Exception ex)

@@ -5,8 +5,8 @@ using VehicleRental.Domain.Entities;
 using VehicleRental.Core.Schema;
 using VehicleRental.Core.Schema.RenterSchemas.RegisterRenterSchema.Request;
 using VehicleRental.Data.Command.RenterCommand.Interfaces;
-using VehicleRental.Data.Query.RenterQuery.Interfaces;
 using VehicleRental.Core.Schema.RenterSchemas;
+using VehicleRental.Domain.Repositories;
 
 namespace VehicleRental.Application.Services.RenterServices
 {
@@ -14,18 +14,18 @@ namespace VehicleRental.Application.Services.RenterServices
     {
         public readonly IMapper _mapper;
         public readonly ISaveRenterCommand _saveRenterCommand;
-        public readonly IGetRenterByIdQuery _getRenterByIdQuery;
         public readonly ISaveRenterCnhCommand _saveRenterCnhCommand;
+        public readonly IRepository<Renter> _renterRepository;
 
         public ManagerRenterService(IMapper mapper, 
             ISaveRenterCommand saveRenterCommand, 
-            IGetRenterByIdQuery getRenterByIdQuery, 
-            ISaveRenterCnhCommand saveRenterCnhCommand)
+            ISaveRenterCnhCommand saveRenterCnhCommand,
+            IRepository<Renter> renterRepository)
         {
             _mapper = mapper;
             _saveRenterCommand = saveRenterCommand;
-            _getRenterByIdQuery = getRenterByIdQuery;
             _saveRenterCnhCommand = saveRenterCnhCommand;
+            _renterRepository = renterRepository;
         }
 
         public async Task<Result> CreateRenter(RegisterRenterRequest request)
@@ -57,7 +57,7 @@ namespace VehicleRental.Application.Services.RenterServices
             if (!validateCnh.IsSuccess)
                 return validateCnh;
 
-            var renter = await _getRenterByIdQuery.GetByIdAsync(request.Rental_Id);
+            var renter = _renterRepository.GetById(request.Rental_Id);
             if(renter == null)
             {
                 result.ValidateResult("Renter_Id inválido");

@@ -3,12 +3,11 @@ using VehicleRental.Domain.Entities;
 using VehicleRental.Core.Schema;
 using VehicleRental.Application.Services.VehicleServices.Interfaces;
 using VehicleRental.Data.Command.VehicleCommand.Interfaces;
-using VehicleRental.Data.Query.VehicleQuery.Interfaces;
-using VehicleRental.Data.Query.BrandQuery.Interfaces;
 using VehicleRental.Core.Helper;
 using VehicleRental.Core.Schema.VehicleSchemas.PlateSchema.Request;
 using VehicleRental.Core.Schema.VehicleSchemas.VehicleSchema.Request;
 using VehicleRental.Core.Schema.VehicleSchemas.DeleteVehicleSchema.Request;
+using VehicleRental.Domain.Repositories;
 
 namespace VehicleRental.Application.Services.VehicleServices
 {
@@ -18,25 +17,22 @@ namespace VehicleRental.Application.Services.VehicleServices
         public readonly ISaveVehicleCommand _saveVehicleCommand;
         public readonly IUpdateVehicleCommand _updateVehicleCommand;
         public readonly IDeleteVehicleCommand _deleteVehicleCommand;
-        public readonly IGetVehicleByIdQuery _getVehicleByIdQuery;
-        public readonly IGetBrandByNameQuery _getBrandByNameQuery;
-        public readonly IGetBrandByIdQuery _getBrandByIdQuery;
+        public readonly IRepository<Brands> _brandRepository;
+        public readonly IRepository<Vehicle> _vehicleRepository;
 
         public ManageVehicleService(IMapper mapper,
             ISaveVehicleCommand saveVehicleCommand,
             IUpdateVehicleCommand updateVehicleCommand,
             IDeleteVehicleCommand deleteVehicleCommand,
-            IGetVehicleByIdQuery getVehicleByIdQuery,
-            IGetBrandByNameQuery getBrandByNameQuery,
-            IGetBrandByIdQuery getBrandByIdQuery)
+            IRepository<Brands> brandRepository,
+            IRepository<Vehicle> vehicleRepository)
         {
             _mapper = mapper;
             _saveVehicleCommand = saveVehicleCommand;
             _updateVehicleCommand = updateVehicleCommand;
             _deleteVehicleCommand = deleteVehicleCommand;
-            _getVehicleByIdQuery = getVehicleByIdQuery;
-            _getBrandByNameQuery = getBrandByNameQuery;
-            _getBrandByIdQuery = getBrandByIdQuery;
+            _brandRepository = brandRepository;
+            _vehicleRepository = vehicleRepository;
         }
 
         public async Task<Result> CreateNewVehicle(VehicleRequest request)
@@ -45,7 +41,7 @@ namespace VehicleRental.Application.Services.VehicleServices
             try
             {
                 var formattedBrandName = BrandHelper.FormatName(request.Brand);
-                var brand = await _getBrandByNameQuery.GetByNameAsync(formattedBrandName);
+                var brand =  _brandRepository.GetByName(formattedBrandName);
 
                 var vehicle = _mapper.Map<Vehicle>(request);
                 vehicle.Brand_Id = brand.Id;
@@ -89,11 +85,11 @@ namespace VehicleRental.Application.Services.VehicleServices
             var result = new Result();
             try
             {
-                var vehicle = await _getVehicleByIdQuery.GetByIdAsync(request.VehicleId);
+                var vehicle = _vehicleRepository.GetById(request.Vehicle_Id);
 
                 if (!vehicle.Availability)
                 {
-                    var brand = await _getBrandByIdQuery.GetByIdAsync(vehicle.Brand_Id);
+                    var brand = _brandRepository.GetById(vehicle.Brand_Id);
 
                     var validate = await ValidateVehicle(vehicle, brand);
                     if (validate.IsSuccess)
@@ -102,7 +98,7 @@ namespace VehicleRental.Application.Services.VehicleServices
                         return result;
                     }
 
-                    await _deleteVehicleCommand.DeleteVehicle(request.VehicleId);
+                    await _deleteVehicleCommand.DeleteVehicle(request.Vehicle_Id);
                     result.IsSuccess = true;
                 }
                 else

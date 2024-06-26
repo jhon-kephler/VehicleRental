@@ -1,49 +1,46 @@
-﻿using MediatR;
-using VehicleRental.Core.Helper;
-using VehicleRental.Application.Services.OrderServices.Interfaces;
+﻿using VehicleRental.Application.Services.OrderServices.Interfaces;
 using VehicleRental.Domain.Entities;
 using VehicleRental.Core.Schema;
 using VehicleRental.Core.Schema.OrderSchemas.Request;
-using VehicleRental.Data.Query.RenterQuery.Interfaces;
-using VehicleRental.Data.Query.VehicleQuery.Interfaces;
 using VehicleRental.Data.Command.OrderCommand;
 using AutoMapper;
 using VehicleRental.Core.Schema.OrderSchemas.Response;
 using VehicleRental.Data.Command.VehicleCommand.Interfaces;
+using VehicleRental.Domain.Repositories;
 
 namespace VehicleRental.Application.Services.OrderServices
 {
     public class ManagerOrderService : IManagerOrderService
     {
         private readonly IMapper _mapper;
-        private readonly IGetRenterByIdQuery _getRenterByIdQuery;
-        private readonly IGetVehicleByIdQuery _vehicleByIdQuery;
         private readonly ISaveOrderCommand _saveOrderCommand;
         private readonly IUpdateVehicleCommand _updateVehicleCommand;
+        private readonly IRepository<Vehicle> _vehicleRepository;
+        private readonly IRepository<Renter> _renterRepository;
 
         public ManagerOrderService(IMapper mapper, 
-            IGetRenterByIdQuery getRenterByIdQuery, 
-            IGetVehicleByIdQuery vehicleByIdQuery, 
             ISaveOrderCommand saveOrderCommand,
-            IUpdateVehicleCommand updateVehicleCommand)
+            IUpdateVehicleCommand updateVehicleCommand,
+            IRepository<Vehicle> vehicleRepository,
+            IRepository<Renter> renterRepository)
         {
             _mapper = mapper;
-            _getRenterByIdQuery = getRenterByIdQuery;
-            _vehicleByIdQuery = vehicleByIdQuery;
             _saveOrderCommand = saveOrderCommand;
             _updateVehicleCommand = updateVehicleCommand;
+            _vehicleRepository = vehicleRepository;
+            _renterRepository = renterRepository;
         }
 
         public async Task<Result> NewOrder(NewOrderRequest request)
         {
             var result = new Result();
 
-            var renter = await _getRenterByIdQuery.GetByIdAsync(request.Renter_Id);
+            var renter = _renterRepository.GetById(request.Renter_Id);
             var validateRenter = await ValidateRenter(renter);
             if(!validateRenter.IsSuccess)
                 return validateRenter;
 
-            var vehicle = await _vehicleByIdQuery.GetByIdAsync(request.Vehicle_Id);
+            var vehicle = _vehicleRepository.GetById(request.Vehicle_Id);
             var validateVehicle = await ValidateVehicle(vehicle, renter);
             if(!validateVehicle.IsSuccess)
                 return validateVehicle;

@@ -3,20 +3,21 @@ using VehicleRental.Application.Services.OrderServices.Interfaces;
 using VehicleRental.Core.Schema;
 using VehicleRental.Core.Schema.OrderSchemas.Request;
 using VehicleRental.Core.Schema.OrderSchemas.Response;
-using VehicleRental.Data.Query.RenterOrderQuery.Interfaces;
+using VehicleRental.Domain.Entities;
+using VehicleRental.Domain.Repositories;
 
 namespace VehicleRental.Application.Services.OrderServices
 {
     public class SearchOrderService : ISearchOrderService
     {
         private readonly IMapper _mapper;
-        private readonly IGetRenterOrderByRenterIdQuery _renterOrderByRenterIdQuery;
+        private readonly IRepository<RenterOrder> _renterOrderRepository;
 
         public SearchOrderService(IMapper mapper, 
-            IGetRenterOrderByRenterIdQuery renterOrderByRenterIdQuery)
+            IRepository<RenterOrder> renterOrderRepository)
         {
             _mapper = mapper;
-            _renterOrderByRenterIdQuery = renterOrderByRenterIdQuery;
+            _renterOrderRepository = renterOrderRepository;
         }
 
         public async Task<Result<OrderResponse>> SearchOrderById(SearchOrderByIdRequest request)
@@ -25,7 +26,7 @@ namespace VehicleRental.Application.Services.OrderServices
 
             try
             {
-                result.SetSuccess(_mapper.Map<OrderResponse>(await _renterOrderByRenterIdQuery.GetByIdAsync(request.Order_Id)));
+                result.SetSuccess(_mapper.Map<OrderResponse>(_renterOrderRepository.GetById(request.Order_Id)));
             }
             catch (Exception ex)
             {
@@ -41,7 +42,7 @@ namespace VehicleRental.Application.Services.OrderServices
 
             try
             {
-                result.SetSuccess(_mapper.Map<OrderResponse>(await _renterOrderByRenterIdQuery.GetByDocumentAsync(request.Document)));
+                result.SetSuccess(_mapper.Map<OrderResponse>(_renterOrderRepository.GetByDocument(request.Document)));
             }
             catch (Exception ex)
             {
@@ -57,7 +58,7 @@ namespace VehicleRental.Application.Services.OrderServices
 
             try
             {
-                result.SetSuccess(_mapper.Map<OrderResponse>(await _renterOrderByRenterIdQuery.GetByCnhAsync(request.Cnh)));
+                result.SetSuccess(_mapper.Map<OrderResponse>(_renterOrderRepository.GetByCnh(request.Cnh)));
             }
             catch (Exception ex)
             {
